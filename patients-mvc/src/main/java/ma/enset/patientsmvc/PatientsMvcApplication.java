@@ -16,7 +16,7 @@ public class PatientsMvcApplication {
     public static void main(String[] args) {
         SpringApplication.run(PatientsMvcApplication.class, args);
     }
-    @Bean
+    //@Bean
     CommandLineRunner start(PatientRepository patientRepository){
 
         return args -> {
@@ -25,7 +25,7 @@ public class PatientsMvcApplication {
                 patient.setNom(name);
                 patient.setMalade(false);
                 patient.setDateNaissance(new Date());
-                patient.setScore(12);
+                patient.setScore(120);
                 patientRepository.save(patient);
             });
             for (Patient p:patientRepository.findAll()) {
