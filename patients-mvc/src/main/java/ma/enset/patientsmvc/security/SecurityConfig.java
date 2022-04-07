@@ -23,13 +23,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
     @Autowired
-    private UserDetailsService userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     //on precise comment spring security va cercher les users et les roles
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        PasswordEncoder passwordEncoder=mypasswordEncoder();
 
         /*
         //inMemoryAuthentication est tres pratique pour tester les applications
@@ -72,9 +73,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling().accessDeniedPage("/403");
 
     }
-    @Bean //au demarage cree moi un objet PasswordEncoder et place dans ton contexte
-    PasswordEncoder mypasswordEncoder(){
-        return  new BCryptPasswordEncoder();
-    }
+
 
 }

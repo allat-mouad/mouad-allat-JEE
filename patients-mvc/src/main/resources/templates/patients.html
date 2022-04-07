@@ -37,12 +37,12 @@
         <td th:text="${p.malade}"></td>
         <td th:text="${p.score}"></td>
         <td>
-            <a  sec:authorize="hasRole('ADMIN')" class="btn btn-success" th:href="@{/admin/editPatients(id=${p.id}, keyword=${keyword}, page=${currentPage})}">
+            <a  sec:authorize="hasAuthority('ADMIN')" class="btn btn-success" th:href="@{/admin/editPatients(id=${p.id}, keyword=${keyword}, page=${currentPage})}">
                 Edit
             </a>
         </td>
         <td>
-            <a sec:authorize="hasRole('ADMIN')" onclick="return confirm('are you sure?')" class="btn btn-danger" th:href="@{/admin/delete(id=${p.id}, keyword=${keyword}, page=${currentPage})}">
+            <a sec:authorize="hasAuthority('ADMIN')" onclick="return confirm('are you sure?')" class="btn btn-danger" th:href="@{/admin/delete(id=${p.id}, keyword=${keyword}, page=${currentPage})}">
                 Delete
             </a>
         </td>
