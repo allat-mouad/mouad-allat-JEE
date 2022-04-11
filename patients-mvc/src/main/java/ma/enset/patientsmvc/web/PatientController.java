@@ -68,8 +68,8 @@ public class PatientController {
 
     @PostMapping("/admin/save")
     public String save(Model model, @Valid Patient patient, BindingResult bindResult,
-                       @RequestParam(defaultValue = "0") String keyword,
-                       @RequestParam(defaultValue = "") int page){
+                       @RequestParam(defaultValue = "") String keyword,
+                       @RequestParam(defaultValue = "0") int page){
         if(bindResult.hasErrors())return "formPatients";
         patientRepository.save(patient);
         return "redirect:/user/index?page="+page+"&keyword="+keyword;
