@@ -33,13 +33,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override//pour spicifier les droits d'acces
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin();
-        http.authorizeHttpRequests().antMatchers("/").permitAll();
-        http.authorizeHttpRequests().antMatchers("/admin/**").hasAuthority("ADMIN");
-        http.authorizeHttpRequests().antMatchers("/user/**").hasAuthority("USER");
-        http.authorizeHttpRequests().antMatchers("/webjars/**").permitAll();
-        http.authorizeHttpRequests().antMatchers("/assets/**").permitAll();
-        http.authorizeHttpRequests().anyRequest().authenticated();//tous les requetes nessecite une authentification
+        http.formLogin().loginPage("/login").permitAll(); // default login page
+        http.logout().logoutSuccessHandler((req, res, auth) -> res.sendRedirect("/login")); // pour configurer la route du logout et rediriger vers la route du login
+
+        http.authorizeRequests().antMatchers("/").permitAll();
+        http.authorizeRequests().antMatchers("/admin/**").hasAuthority("ADMIN");
+        http.authorizeRequests().antMatchers("/user/**").hasAuthority("USER");
+        http.authorizeRequests().antMatchers("/webjars/**").permitAll();
+        http.authorizeRequests().antMatchers("/assets/**").permitAll();
+        http.authorizeRequests().anyRequest().authenticated();//tous les requetes nessecite une authentification
         http.exceptionHandling().accessDeniedPage("/403");
 
     }
