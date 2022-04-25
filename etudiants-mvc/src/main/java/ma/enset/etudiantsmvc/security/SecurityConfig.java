@@ -25,8 +25,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-
-
         auth.userDetailsService(userDetailsService);
 
         }
@@ -34,14 +32,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override//pour spicifier les droits d'acces
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin().loginPage("/login").permitAll(); // default login page
-        http.logout().logoutSuccessHandler((req, res, auth) -> res.sendRedirect("/login")); // pour configurer la route du logout et rediriger vers la route du login
+        http.csrf().disable(); // ⚠ CSRF Disabled !! (delete action)
 
+        //http.logout().logoutSuccessHandler((req, res, auth) -> res.sendRedirect("/login")); // pour configurer la route du logout et rediriger vers la route du login
+       // http.logout().logoutSuccessUrl("/");
         http.authorizeRequests().antMatchers("/").permitAll();
         http.authorizeRequests().antMatchers("/admin/**").hasAuthority("ADMIN");
         http.authorizeRequests().antMatchers("/user/**").hasAuthority("USER");
         http.authorizeRequests().antMatchers("/webjars/**").permitAll();
         http.authorizeRequests().antMatchers("/assets/**").permitAll();
-        http.authorizeRequests().anyRequest().authenticated();//tous les requetes nessecite une authentification
+        //tous les requetes nessecite une authentification
+        //http.authorizeRequests().anyRequest().authenticated();
         http.exceptionHandling().accessDeniedPage("/403");
 
     }

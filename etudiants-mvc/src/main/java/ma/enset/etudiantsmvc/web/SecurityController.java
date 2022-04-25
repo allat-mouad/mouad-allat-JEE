@@ -12,4 +12,5 @@ public class SecurityController {
     public String loginPage(){ // @GetMapping // @RequestMapping(value = "/login", method = RequestMethod.GET)
         return "/login"; // retourne la vue login.html
     }
+
 }
