@@ -8,15 +8,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
-@Controller
+//@Controller
 @AllArgsConstructor
 public class EtudientController {
     private EtudiantRepository etudiantRepository;
@@ -39,8 +36,8 @@ public class EtudientController {
     public String home() {
         return "home";
     }
-
-    @GetMapping("/user/etudiants")
+    @CrossOrigin
+    @GetMapping("/etudiants")
     @ResponseBody
     public List<Etudiant> etudiantList() {
         return etudiantRepository.findAll();

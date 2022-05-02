@@ -3,6 +3,8 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Nimbleways/atelier-refacto-tdd" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Nimbleways/atelier-refacto-tdd-enset" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Nouveau dossier/atelier-refacto-tdd" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/student-management-app" vcs="Git" />
   </component>
 </project>

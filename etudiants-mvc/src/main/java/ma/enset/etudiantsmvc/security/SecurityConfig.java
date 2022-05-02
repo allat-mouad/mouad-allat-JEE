@@ -11,8 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
 
-@Configuration//spring va instancier les classes avec l'annotation Configuration avant tous
-@EnableWebSecurity//activer la securiter web
+//@Configuration//spring va instancier les classes avec l'annotation Configuration avant tous
+//@EnableWebSecurity//activer la securiter web
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
@@ -37,6 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //http.logout().logoutSuccessHandler((req, res, auth) -> res.sendRedirect("/login")); // pour configurer la route du logout et rediriger vers la route du login
        // http.logout().logoutSuccessUrl("/");
         http.authorizeRequests().antMatchers("/").permitAll();
+
         http.authorizeRequests().antMatchers("/admin/**").hasAuthority("ADMIN");
         http.authorizeRequests().antMatchers("/user/**").hasAuthority("USER");
         http.authorizeRequests().antMatchers("/webjars/**").permitAll();
