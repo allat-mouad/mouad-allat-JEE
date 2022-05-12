@@ -1,0 +1,39 @@
+[
+{
+  "id": 1,
+  "name": "mouad",
+  "phone": "0629389208",
+  "salary": 22000,
+  "age": 23,
+  "departement": "informatique"
+},
+{
+  "id": 2,
+  "name": "amine",
+  "phone": "0629389208",
+  "salary": 12000,
+  "age": 33,
+  "departement": "production"
+},{
+  "id": 3,
+  "name": "samir",
+  "phone": "0629389208",
+  "salary": 30000,
+  "age": 32,
+  "departement": "informatique"
+},{
+  "id": 4,
+  "name": "omar",
+  "phone": "0629389208",
+  "salary": 29000,
+  "age": 35,
+  "departement": "informatique"
+},{
+  "id": 5,
+  "name": "tomas",
+  "phone": "0629389208",
+  "salary": 11000,
+  "age": 24,
+  "departement": "financier"
+}
+]
