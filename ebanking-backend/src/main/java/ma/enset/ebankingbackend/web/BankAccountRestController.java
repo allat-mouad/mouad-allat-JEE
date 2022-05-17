@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @Slf4j
+@CrossOrigin("*")
 public class BankAccountRestController {
     private BankAccountService bankAccountService;
 
@@ -21,6 +22,8 @@ public class BankAccountRestController {
     public BankAccountDTO getBankAccount(@PathVariable String accountId) {
         return bankAccountService.getBankAccount(accountId);
     }
+
+
 
     @GetMapping("/accounts")
     public List<BankAccountDTO> getBankAccount() {

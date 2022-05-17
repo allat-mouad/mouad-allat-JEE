@@ -21,6 +21,7 @@ public interface BankAccountService {
     CurrentBankAccountDTO saveCurrentBankAccount(double initialBalance, double overDraft, Long customerId);
     SavingBankAccountDTO saveSavingBankAccount(double initialBalance, double intrestRate, Long customerId);
     List<CustomerDTO> listCustomers();
+    List<CustomerDTO> searchCustomers(String keyword);
     List<BankAccountDTO> bankAccountList();
     BankAccountDTO getBankAccount(String accountId) throws BankAccountNotFoundException;
 
