@@ -10,6 +10,10 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewCustomerComponent } from './new-customer/new-customer.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatSortModule} from "@angular/material/sort";
+import { CustomerAccountsComponent } from './customer-accounts/customer-accounts.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +21,16 @@ import { NewCustomerComponent } from './new-customer/new-customer.component';
     NavbarComponent,
     CustomersComponent,
     AccountsComponent,
-    NewCustomerComponent
+    NewCustomerComponent,
+    CustomerAccountsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule
