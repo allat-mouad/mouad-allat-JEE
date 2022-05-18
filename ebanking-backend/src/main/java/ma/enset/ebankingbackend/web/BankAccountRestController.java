@@ -40,14 +40,10 @@ public class BankAccountRestController {
             @PathVariable String accountId,
             @RequestParam(name = "page",defaultValue = "0") int page,
             @RequestParam(name = "size",defaultValue = "5")int size) {
-        return bankAccountService.getAccountHistory(accountId,page,size);
+         return bankAccountService.getAccountHistory(accountId,page,size);
     }
 
-    @PostMapping("/accounts/{accountId}/operations")
-    public  void debiter(
-            @PathVariable String accountId,@RequestBody double amount) throws BalanceNotSufficientException {
-        bankAccountService.debit(accountId,amount,"debiter");
-    }
+
 
 
 
