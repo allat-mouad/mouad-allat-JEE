@@ -23,6 +23,11 @@ public class BankAccountRestController {
         return bankAccountService.getBankAccount(accountId);
     }
 
+    @GetMapping("/account/{customerId}")
+    public List<BankAccountDTO> getBankAccountByCustomer(@PathVariable Long customerId) {
+        return bankAccountService.getBankAccountByCustomerId(customerId);
+    }
+
 
 
     @GetMapping("/accounts")

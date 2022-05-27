@@ -43,6 +43,7 @@ public class EtudientController {
         return etudiantRepository.findAll();
     }
 
+
     @PostMapping("/admin/save")
     public String save(Model model, @Valid Etudiant etudiant, BindingResult bindResult,
                        @RequestParam(defaultValue = "") String keyword,

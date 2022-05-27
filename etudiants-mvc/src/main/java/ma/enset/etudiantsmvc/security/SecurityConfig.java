@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 //@Configuration//spring va instancier les classes avec l'annotation Configuration avant tous
 //@EnableWebSecurity//activer la securiter web
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class  SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
     @Autowired

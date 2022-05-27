@@ -117,6 +117,7 @@ public class BankAccountServiceImpl implements BankAccountService {
 
     }
 
+
     @Override
     public BankAccountDTO getBankAccount(String accountId) throws BankAccountNotFoundException {
         BankAccount bankAccount = bankAccountRepository.findById(accountId)
@@ -129,6 +130,25 @@ public class BankAccountServiceImpl implements BankAccountService {
             return bankAccountMapper.fromCurrentBankAccount(currentAccount);
         }
     }
+
+    //get bank account by customer id
+    @Override
+    public List<BankAccountDTO> getBankAccountByCustomerId(Long customerId) {
+        List<BankAccount> bankAccounts = bankAccountRepository.findByCustomerId(customerId);
+        List<BankAccountDTO> bankAccountDTOS = bankAccounts.stream().map(bankAccount -> {
+                    if (bankAccount instanceof SavingAccount) {
+                        SavingAccount savingAccount = (SavingAccount) bankAccount;
+                        return bankAccountMapper.fromSavingBankAccount(savingAccount);
+                    } else {
+                        CurrentAccount currentAccount = (CurrentAccount) bankAccount;
+                        return bankAccountMapper.fromCurrentBankAccount(currentAccount);
+                    }
+                }
+        ).collect(Collectors.toList());
+        return bankAccountDTOS;
+    }
+
+
 
     @Override
     public void debit(String accountId, double amount, String description) throws BalanceNotSufficientException {
