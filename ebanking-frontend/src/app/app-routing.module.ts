@@ -11,6 +11,8 @@ const routes: Routes = [
   },{
     path:"accounts",component:AccountsComponent
   },{
+    path:"accounts/:id",component:AccountsComponent
+  },{
     path:"new-customer",component:NewCustomerComponent
   },{
     path:"customer-accounts/:id",component:CustomerAccountsComponent

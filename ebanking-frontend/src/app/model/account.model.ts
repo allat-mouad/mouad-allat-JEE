@@ -14,3 +14,18 @@ export interface AccountOperationDTO {
   type:          string;
   description:   string;
 }
+
+export interface CustomerDTO {
+  id: number;
+  name: string;
+  email: string;
+}
+
+export interface AccountDTO {
+  type: string;
+  id: string;
+  balance: number;
+  createdAt: Date;
+  accountStatus?: any;
+
+}

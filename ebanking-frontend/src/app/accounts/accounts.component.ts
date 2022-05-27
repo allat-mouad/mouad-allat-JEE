@@ -3,7 +3,8 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {AccountService} from "../services/account.service";
 import {catchError, Observable, throwError} from "rxjs";
 import {Customer} from "../model/customer.model";
-import {AccountHistory} from "../model/account.model";
+import {AccountDTO, AccountHistory} from "../model/account.model";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-accounts',
@@ -17,12 +18,17 @@ export class AccountsComponent implements OnInit {
   pageSize:number=5;
   errorMessage! :string;
   accounts!: Observable<AccountHistory>;
+  accountId: number=0;
 
-  constructor(private fb:FormBuilder,private accountService:AccountService) { }
+  constructor(private fb:FormBuilder,private accountService:AccountService,private route:ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {
+    this.accountId=this.route.snapshot.params["id"];
+    console.log("accountId: "+this.accountId);
+
+
     this.accountFormGroup=this.fb.group({
-      accountId:this.fb.control("")
+      accountId:this.fb.control(this.accountId)
     });
     this.operationFormGroup=this.fb.group({
       operationType:this.fb.control(null),
@@ -31,11 +37,16 @@ export class AccountsComponent implements OnInit {
       accountDestination:this.fb.control(null)
 
     });
+    if (this.accountId!=0)
+    {
+      this.handleSearchAccount();
+
+    }
 
   }
   handleSearchAccount(){
-    let accountId:string=this.accountFormGroup.value.accountId;
-    this.accounts=this.accountService.getAccount(accountId,this.currentPage,this.pageSize).pipe(
+    let accountID:string=this.accountFormGroup.value.accountId;
+    this.accounts=this.accountService.getAccount(accountID,this.currentPage,this.pageSize).pipe(
       catchError(err=>{
         this.errorMessage=err.message;
         return throwError(err);

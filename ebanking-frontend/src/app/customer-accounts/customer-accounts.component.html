@@ -1,1 +1,53 @@
 {{custumer |  json}}
+{{accounts |  json}}
+<div class="container mt-2">
+  <ng-container *ngIf="accounts | async as listAccounts; else failureOrLoading">
+
+    <div class="card">
+      <div class="card-header">Accounts</div>
+      <div class="card-body">
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Account ID</th>
+              <th>Account Type</th>
+              <th>Account Balance</th>
+              <th>Account Created</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let a of listAccounts">
+              <td>{{a.id}}</td>
+              <td>{{a.type}}</td>
+              <td>{{a.balance}}</td>
+              <td>{{a.createdAt}}</td>
+              <td>{{a.createdAt}}</td>
+              <td>
+                <button (click)="handleAccountsOperations(a)" class="btn btn-success">
+                  <i>Operations</i>
+                </button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+        </ng-container>
+  <ng-template #failureOrLoading>
+    <ng-container *ngIf="errorMessage;else loading">
+      <div class="text-danger">
+        {{errorMessage}}
+
+      </div>
+    </ng-container>
+    <ng-template #loading>
+      Loading..............
+    </ng-template>
+
+  </ng-template>
+
+
+</div>
+
