@@ -1,18 +1,30 @@
-<div class="container mt-2">
-<ng-container *ngIf="customers | async as listCustomers; else failureOrLoading">
-  <div class="card">
-    <div class="card-header">Customers</div>
-    <div class="card-body">
+  <div class="container d-flex justify-content-center ">
+
+    <ng-container  *ngIf="customers | async as listCustomers; else failureOrLoading">
+    <div class="uk-card uk-card-default uk-card-body uk-width-4-5@s">
+
+      <h3 class="uk-card-title">Customers</h3>
       <div *ngIf="searchFormGroup">
         <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchCustomers()">
-        <div  class="input-group">
-          <label class="input-group-text">Keyword :</label>
-          <input type="text" formControlName="keyword" class="form-control">
-          <button class="btn btn-info">Search</button>
-        </div>
+          <fieldset class="uk-fieldset">
+            <div class="uk-margin">
+              <div class="row">
+                <div class="col-md-7">
+                  <input class="uk-input" type="text" formControlName="keyword" placeholder="Input">
+
+                </div>
+                <div class="col-md-4 mt-2">
+                  <button uk-icon="icon: search"></button>
+
+                </div>
+              </div>
+
+            </div>
+          </fieldset>
+
         </form>
       </div>
-      <table class="table">
+      <table class="uk-table uk-table-striped">
         <thead>
         <tr>
           <th>ID</th><th>Name</th><th>email</th><th>actions</th>
@@ -24,19 +36,18 @@
           <td>{{c.name}}</td>
           <td>{{c.email}}</td>
           <td>
-            <button (click)="handleDeleteCustomer(c)" class="btn btn-danger">
-            <i class="bi bi-trash"></i>
-          </button></td>
+            <button (click)="handleDeleteCustomer(c)"   uk-icon="icon: trash">
+            </button></td>
           <td>
-            <button (click)="handleCustomerAccounts(c)" class="btn btn-success">
+            <button (click)="handleCustomerAccounts(c)" class="uk-button uk-button-secondary">
               <i>Accounts</i>
             </button></td>
         </tr>
         </tbody>
       </table>
     </div>
-  </div>
-</ng-container>
+
+  </ng-container>
   <ng-template #failureOrLoading>
     <ng-container *ngIf="errorMessage;else loading">
       <div class="text-danger">
@@ -45,11 +56,30 @@
       </div>
     </ng-container>
     <ng-template #loading>
-      Loading..............
+      <progress id="js-progressbar" class="uk-progress" value="10" max="100"></progress>
+
+      <script>
+
+        UIkit.util.ready(function () {
+
+          var bar = document.getElementById('js-progressbar');
+
+          var animate = setInterval(function () {
+
+            bar.value += 100;
+
+            if (bar.value >= bar.max) {
+              clearInterval(animate);
+            }
+
+          }, 1000);
+
+        });
+
+      </script>
     </ng-template>
 
   </ng-template>
 
 
 </div>
-

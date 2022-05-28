@@ -2,10 +2,7 @@ package ma.enset.ebankingbackend.web;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import ma.enset.ebankingbackend.dtos.CreditDTO;
-import ma.enset.ebankingbackend.dtos.CustomerDTO;
-import ma.enset.ebankingbackend.dtos.DebitDTO;
-import ma.enset.ebankingbackend.dtos.TransferDTO;
+import ma.enset.ebankingbackend.dtos.*;
 import ma.enset.ebankingbackend.entities.BankAccount;
 import ma.enset.ebankingbackend.entities.Customer;
 import ma.enset.ebankingbackend.exceptions.BalanceNotSufficientException;
@@ -39,6 +36,7 @@ public class CustomerRestController {
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO) {
         return bankAccountService.saveCustomer(customerDTO);
     }
+
     @PostMapping("/accounts/debit")
     public DebitDTO debit(@RequestBody DebitDTO debitDTO) throws BalanceNotSufficientException {
          bankAccountService.debit(debitDTO.getAccountId(),debitDTO.getAmount(),debitDTO.getDescription());

@@ -29,3 +29,14 @@ export interface AccountDTO {
   accountStatus?: any;
 
 }
+
+export interface BankAccountDTO {
+  type: string;
+  id: string;
+  balance: number;
+  createdAt: Date;
+  accountStatus?: any;
+  overDraft?: any;
+  interestRate?: any;
+
+}

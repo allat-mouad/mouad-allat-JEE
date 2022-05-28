@@ -1,7 +1,9 @@
-<div class="container">
-  <div class="card col-md-6 offset-3 mt-2">
-    <div class="card-header">New Customer</div>
-    <div class="card-body">
+<div class="container d-flex justify-content-center">
+  <div class="uk-child-width-6-7@s uk-grid-match" uk-grid>
+
+  <div  class="uk-card uk-card-secondary uk-card-hover uk-card-body uk-light">
+    <h3 class="uk-card-title">New Customer</h3>
+
       <form [formGroup]="newCustomerformGroup" (ngSubmit)="handleSaveCustomer()">
         <div class="mb-3">
           <label class="form-label">Name:</label>
@@ -24,10 +26,10 @@
   Email is not valid
           </span>
         </div>
-        <button [disabled]="!newCustomerformGroup.valid" class="btn btn-info">Save</button>
+        <button [disabled]="!newCustomerformGroup.valid" class="uk-button uk-button-primary">Save</button>
       </form>
     </div>
-  </div>
+</div>
 </div>
 
 

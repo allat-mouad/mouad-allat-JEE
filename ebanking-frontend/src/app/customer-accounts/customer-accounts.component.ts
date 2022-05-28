@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Customer} from "../model/customer.model";
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {catchError, Observable, throwError} from "rxjs";
 import {AccountDTO, AccountHistory} from "../model/account.model";
 import {AccountService} from "../services/account.service";
+import {DialogComponent} from "../dialog/dialog.component";
 
 @Component({
   selector: 'app-customer-accounts',
@@ -17,16 +19,13 @@ export class CustomerAccountsComponent implements OnInit {
   errorMessage! :string;
 
 
-  constructor(private accountService:AccountService,private route:ActivatedRoute,private router:Router) {
+  constructor(private dialog:MatDialog,private accountService:AccountService,private route:ActivatedRoute,private router:Router) {
     this.custumer=this.router.getCurrentNavigation()?.extras.state as Customer;
 
   }
 
   ngOnInit(): void {
-    console.log(this.accountService.getAccountByCustomerID(this.route.snapshot.params["id"]).
-    subscribe(accounts=>{
-      console.log(accounts);
-    }));
+
   this.customerId=this.route.snapshot.params["id"];
     this.accounts=this.accountService.getAccountByCustomerID(this.customerId).pipe(
       catchError(err=>{
@@ -39,6 +38,21 @@ export class CustomerAccountsComponent implements OnInit {
 
   handleAccountsOperations(account:AccountDTO){
     this.router.navigateByUrl('/accounts/'+account.id,{state:account});
+  }
+  //dialog
+  openDialog() {
+    this.dialog.open(DialogComponent, {
+      width:'30%'
+    }).afterClosed().subscribe(val=>{
+      if(val=='save'){
+        this.accounts=this.accountService.getAccountByCustomerID(this.customerId).pipe(
+          catchError(err=>{
+            this.errorMessage=err.message;
+            return throwError(err);
+          })
+        );
+      }
+    })
   }
 
 

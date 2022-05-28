@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>Add Account Infos Here:</h1>
+<div mat-dialog-content>
+  <form [formGroup]="accountForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Account ID</mat-label>
+      <input formControlName="id" matInput placeholder="id">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Account Balance</mat-label>
+      <input formControlName="balance" matInput placeholder="balance">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Account Type</mat-label>
+      <mat-select formControlName="type"  placeholder="type">
+        <mat-option value="Saving">Saving</mat-option>
+        <mat-option value="Current">Current</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field  appearance="outline">
+      <mat-label>Ammount</mat-label>
+      <input formControlName="ammount" matInput placeholder="ammount">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Choose a date</mat-label>
+      <input formControlName="createdAt" matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+  </form>
+</div>
+<div mat-dialog-action [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button style="margin-left: 8px" mat-raised-button color="primary" (click)="addBankAccount()" >Save</button>
+
+</div>

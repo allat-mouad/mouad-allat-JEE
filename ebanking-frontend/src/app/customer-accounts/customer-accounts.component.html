@@ -1,33 +1,32 @@
-{{custumer |  json}}
-{{accounts |  json}}
+
 <div class="container mt-2">
   <ng-container *ngIf="accounts | async as listAccounts; else failureOrLoading">
 
-    <div class="card">
-      <div class="card-header">Accounts</div>
-      <div class="card-body">
+    <div>
+      <div class="uk-card uk-card-secondary uk-card-hover uk-card-body uk-light">
+        <div class="uk-card-badge uk-label" (click)="openDialog()" uk-icon="icon: plus"></div>
 
-        <table class="table table-striped">
+        <h3 class="uk-card-title">Accounts</h3>
+        <table  class="uk-table uk-table-hover uk-table-divider">
           <thead>
-            <tr>
-              <th>Account ID</th>
-              <th>Account Type</th>
-              <th>Account Balance</th>
-              <th>Account Created</th>
-            </tr>
+          <tr>
+            <th>Account ID</th>
+            <th>Account Type</th>
+            <th>Account Balance</th>
+            <th>Created At</th>
+          </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let a of listAccounts">
-              <td>{{a.id}}</td>
-              <td>{{a.type}}</td>
-              <td>{{a.balance}}</td>
-              <td>{{a.createdAt}}</td>
-              <td>{{a.createdAt}}</td>
-              <td>
-                <button (click)="handleAccountsOperations(a)" class="btn btn-success">
-                  <i>Operations</i>
-                </button></td>
-            </tr>
+          <tr *ngFor="let a of listAccounts">
+            <td>{{a.id}}</td>
+            <td>{{a.type}}</td>
+            <td>{{a.balance | number:'1.2-2'}}</td>
+            <td>{{a.createdAt | date}}</td>
+            <td>
+              <button (click)="handleAccountsOperations(a)" class="uk-button uk-button-primary">
+                <i>Operations</i>
+              </button></td>
+          </tr>
           </tbody>
         </table>
       </div>
@@ -43,7 +42,27 @@
       </div>
     </ng-container>
     <ng-template #loading>
-      Loading..............
+      <progress id="js-progressbar" class="uk-progress" value="10" max="100"></progress>
+
+      <script>
+
+        UIkit.util.ready(function () {
+
+          var bar = document.getElementById('js-progressbar');
+
+          var animate = setInterval(function () {
+
+            bar.value += 10;
+
+            if (bar.value >= bar.max) {
+              clearInterval(animate);
+            }
+
+          }, 1000);
+
+        });
+
+      </script>
     </ng-template>
 
   </ng-template>
