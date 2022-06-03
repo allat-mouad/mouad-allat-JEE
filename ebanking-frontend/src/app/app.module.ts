@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgxUiLoaderConfig, NgxUiLoaderModule, NgxUiLoaderRouterModule, PB_DIRECTION, POSITION, SPINNER } from 'ngx-ui-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,7 +27,36 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatRadioModule} from "@angular/material/radio";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
-
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  "bgsColor": "#2a9b98",
+  "bgsOpacity": 1,
+  "bgsPosition": "bottom-right",
+  "bgsSize": 60,
+  "bgsType": "ball-spin-clockwise",
+  "blur": 15,
+  "delay": 0,
+  "fastFadeOut": true,
+  "fgsColor": "#2a9b98",
+  "fgsPosition": "center-center",
+  "fgsSize": 60,
+  "fgsType": "ball-spin-clockwise",
+  "gap": 24,
+  "logoPosition": "center-center",
+  "logoSize": 120,
+  "logoUrl": "assets/images/triangle.svg",
+  "masterLoaderId": "master",
+  "overlayBorderRadius": "0",
+  "overlayColor": "rgb(255,255,255)",
+  "pbColor": "red",
+  "pbDirection": "ltr",
+  "pbThickness": 3,
+  "hasProgressBar": false,
+  "text": "",
+  "textColor": "#FFFFFF",
+  "textPosition": "center-center",
+  "maxTime": -1,
+  "minTime": 300
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +76,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     MatPaginatorModule,
     MatSortModule,
     FormsModule,
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatDialogModule,

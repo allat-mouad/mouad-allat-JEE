@@ -16,6 +16,7 @@ import java.util.List;
 public class BankAccountRestController {
     private BankAccountService bankAccountService;
 
+
     @GetMapping("/accounts/{accountId}")
     public BankAccountDTO getBankAccount(@PathVariable String accountId) {
         return bankAccountService.getBankAccount(accountId);
@@ -48,16 +49,24 @@ public class BankAccountRestController {
     }
 
     @PostMapping("/accounts")
-    public BankAccountDTO saveBankAccount(@RequestBody BankAccountDTO bankAccountDTO) {
-        if(bankAccountDTO instanceof SavingBankAccountDTO){
-            return bankAccountService.saveSavingBankAccount(((SavingBankAccountDTO) bankAccountDTO).getBalance(),((SavingBankAccountDTO) bankAccountDTO).getInterestRate(),((SavingBankAccountDTO) bankAccountDTO).getCustomerDTO().getId());
+    public BankAccountDTO saveBankAccount(@RequestBody BankAccountReqDTO bankAccountDTO) {
+        BankAccountDTO dto;
+        if (bankAccountDTO.getType().equals("SavingAccount")) {
+            this.bankAccountService.getCustomer(bankAccountDTO.getCustomer().getId());
+            dto = bankAccountService.saveSavingBankAccount(
+                    bankAccountDTO.getBalance(),
+                    bankAccountDTO.getInterestRate(),
+                    bankAccountDTO.getCustomer().getId()
+            );
+        } else {
+            this.bankAccountService.getCustomer(bankAccountDTO.getCustomer().getId());
+            dto = bankAccountService.saveCurrentBankAccount(
+                    bankAccountDTO.getBalance(),
+                    bankAccountDTO.getOverDraft(),
+                    bankAccountDTO.getCustomer().getId()
+            );
         }
-        else if(bankAccountDTO instanceof CurrentBankAccountDTO){
-            return bankAccountService.saveCurrentBankAccount(((CurrentBankAccountDTO) bankAccountDTO).getBalance(),((CurrentBankAccountDTO) bankAccountDTO).getOverDraft(),((CurrentBankAccountDTO) bankAccountDTO).getCustomerDTO().getId());
-        }
-        else{
-            return null;
-        }
+        return dto;
     }
 
 

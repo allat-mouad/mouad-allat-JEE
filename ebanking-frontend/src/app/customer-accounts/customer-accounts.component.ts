@@ -42,7 +42,11 @@ export class CustomerAccountsComponent implements OnInit {
   //dialog
   openDialog() {
     this.dialog.open(DialogComponent, {
-      width:'30%'
+      width:'30%',
+      data: {
+      customer:this.custumer,
+
+      }
     }).afterClosed().subscribe(val=>{
       if(val=='save'){
         this.accounts=this.accountService.getAccountByCustomerID(this.customerId).pipe(

@@ -25,9 +25,7 @@ export class CustomersComponent implements OnInit {
     });
 
     this.handleSearchCustomers();
-    console.log(this.customerService.getCustomers().subscribe(customers=>{
-      console.log(customers);
-    }));
+
     }
   handleSearchCustomers(){
     let kw=this.searchFormGroup?.value.keyword;

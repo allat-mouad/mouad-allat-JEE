@@ -16,11 +16,9 @@ export class AccountService {
     return this.http.get<AccountHistory>(environment.backendHost+"/accounts/"+accountId+"/pageOperations?" +
       "page="+page+"&size"+size);
   }
-  public saveBankAccount(id:string,balance:number,type:string
-                         ,createdAt:Date,ammount:number,customerId:number){
-    let data={id,balance,type,createdAt,ammount,customerId}
+  public saveBankAccount(bankAccount:AccountDTO){
 
-    return this.http.post<Customer>(environment.backendHost+"/accounts",data);
+    return this.http.post(environment.backendHost+"/accounts",bankAccount);
   }
 
   public getAccountByCustomerID(customerID: number):Observable<Array<AccountDTO>>{

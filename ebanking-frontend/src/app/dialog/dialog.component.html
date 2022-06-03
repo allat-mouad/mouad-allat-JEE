@@ -13,15 +13,20 @@
     <mat-form-field appearance="outline">
       <mat-label>Account Type</mat-label>
       <mat-select formControlName="type"  placeholder="type">
-        <mat-option value="Saving">Saving</mat-option>
-        <mat-option value="Current">Current</mat-option>
+        <mat-option (click)="onSavingAccountSelected()" value="SavingAccount">Saving</mat-option>
+        <mat-option (click)="onCurrentAccountSelected()"  value="CurrentAccount">Current</mat-option>
       </mat-select>
     </mat-form-field>
 
 
-    <mat-form-field  appearance="outline">
-      <mat-label>Ammount</mat-label>
-      <input formControlName="ammount" matInput placeholder="ammount">
+    <mat-form-field *ngIf="selectedType=='SavingAccount'" appearance="outline">
+      <mat-label>Interest rate :</mat-label>
+      <input formControlName="interestRate" matInput placeholder="interestRate">
+    </mat-form-field>
+
+ <mat-form-field *ngIf="selectedType=='CurrentAccount'" appearance="outline">
+      <mat-label>Over Draft  :</mat-label>
+      <input formControlName="overDraft" matInput placeholder="overDraft">
     </mat-form-field>
 
     <mat-form-field appearance="outline">

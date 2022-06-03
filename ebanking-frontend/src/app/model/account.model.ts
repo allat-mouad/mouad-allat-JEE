@@ -1,3 +1,5 @@
+import {Customer} from "./customer.model";
+
 export interface AccountHistory {
   accountId:            string;
   balance:              number;
@@ -38,5 +40,6 @@ export interface BankAccountDTO {
   accountStatus?: any;
   overDraft?: any;
   interestRate?: any;
+  customer: Customer;
 
 }
